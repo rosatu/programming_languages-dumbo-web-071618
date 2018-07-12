@@ -1,10 +1,14 @@
 require 'pry'
 def reformat_languages(languages)
-  languages[:oo].merge(languages[:functional]).each do |k,v|
-     binding.pry
-    if languages[:oo].keys.include?(k)
-      hash[k] = {:style => [:oo]}
+  new_hash = languages[:oo].merge(languages[:functional])
+  new_hash.each do |k,v|
+    if languages[:functional].keys.include?(k) && languages[:oo].keys.include?(k)
+      new_hash[k][:style] = [:oo, :functional]
+    elsif languages[:oo].keys.include?(k) 
+      new_hash[k][:style] = [:oo]
+    elsif languages[:functional].keys.include?(k) 
+      new_hash[k][:style] = [:functional]
+    end 
     end
-  end 
-  return hash
+  return new_hash
 end  
