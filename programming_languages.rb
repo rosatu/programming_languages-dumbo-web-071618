@@ -1,4 +1,3 @@
-require 'pry'
 def reformat_languages(languages)
   new_hash = languages[:oo].merge(languages[:functional])
   new_hash.each do |k,v|
